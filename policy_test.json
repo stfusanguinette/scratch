@@ -15,6 +15,7 @@
           "Effect": "Allow",
           "Action": [
               "iam:ChangePassword",
+              "iam:ListUsers",
               "iam:GetUser"
           ],
           "Resource": "arn:aws:iam::*:user/${aws:username}"
