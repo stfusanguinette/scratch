@@ -1,0 +1,8 @@
+aws iam list-users --query 'Users[*].[UserName]' --output text | while read -r username; do
+    passwordLastUsed=$(aws iam get-login-profile --user-name "$username" --query 'LoginProfile.PasswordLastUsed' --output text 2>/dev/null)
+    if [ -n "$passwordLastUsed" ] && [ "$passwordLastUsed" != "None" ]; then
+        echo "IAM User: $username - Console Login: Yes"
+    else
+        echo "IAM User: $username - Console Login: No"
+    fi
+done
